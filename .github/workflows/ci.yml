@@ -1,0 +1,33 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
+        compiler: [ clang, gcc ]
+        type: [ Debug, Release ]
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Initialize Environment
+      uses: ./init
+    - name: Test environment
+      run: |
+        mpicc
+        gcc -v
+        clang -v
+    - name: Build & Test
+      uses: ./cmake@v1
+      with:
+        build-dir: ${{ runner.workspace }}/build
+        cc: ${{ matrix.compiler }}
+        build-type: ${{ matrix.type }}
+        run-test: true

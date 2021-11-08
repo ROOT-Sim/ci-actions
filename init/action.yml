@@ -1,0 +1,13 @@
+---
+name: 'Setup MPI'
+description: 'Set up a specific MPI implementation.'
+
+runs:
+  using: 'composite'
+  steps:
+    - id: setup-init
+      run: ${GITHUB_ACTION_PATH}/setup-mpi.sh
+      shell: bash
+    - id: setup-compilers
+      run: ${GITHUB_ACTION_PATH}/setup-compilers.sh
+      shell: bash
