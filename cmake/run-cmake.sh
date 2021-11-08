@@ -2,24 +2,25 @@
 set -eu
 
 case $(uname) in
-    Linux)
-       mkdir build
-       cd build
-       cmake ..
-       ;;
+  Linux)
+    mkdir build
+    cd build
+    cmake ..
+    ;;
 
-    Darwin)
-        echo "TODO"
-        exit 1
-        ;;
+  Darwin)
+    mkdir build
+    cd build
+    cmake ..
+    ;;
 
-    Windows*)
-        echo "TODO"
-        exit 1
-        ;;
+  Windows* | MINGW*)
+    echo "TODO"
+    exit 1
+    ;;
 
-    *)
-        echo "Unknown platform:" $(uname)
-        exit 1
-        ;;
+  *)
+    echo "Unknown platform:" $(uname)
+    exit 1
+    ;;
 esac

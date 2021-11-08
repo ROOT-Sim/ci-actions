@@ -10,9 +10,8 @@ case $(uname) in
         echo "No need to install anything"
         ;;
 
-    Windows*)
+    Windows* | MINGW*)
         choco install --yes llvm
-        #choco upgrade mingw -y --no-progress --allow-downgrade
         ;;
 
     *)
