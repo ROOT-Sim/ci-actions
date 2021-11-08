@@ -12,8 +12,10 @@ jobs:
       fail-fast: false
       matrix:
         os: [ ubuntu-latest, windows-latest, macos-latest ]
-        compiler: [ clang, gcc ]
-        type: [ Debug, Release ]
+#        compiler: [ clang, gcc ]
+        compiler: [ clang ]
+#        type: [ Debug, Release ]
+        type: [ Debug ]
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -21,9 +23,9 @@ jobs:
       uses: ./init
     - name: Test environment
       run: |
-        mpicc
-        gcc -v
-        clang -v
+        mpicc -v || exit 1
+        gcc -v || exit 1
+        clang -v || exit 1
     - name: Build & Test
       uses: ./cmake@v1
       with:

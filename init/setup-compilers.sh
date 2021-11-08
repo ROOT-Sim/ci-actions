@@ -3,17 +3,16 @@ set -eu
 
 case $(uname) in
     Linux)
-       sudo apt-get update
-       sudo DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends gcc g++ clang clang++
+        echo "No need to install anything"
        ;;
 
     Darwin)
-        brew install gcc
+        echo "No need to install anything"
         ;;
 
     Windows*)
-        sdir=$(dirname "${BASH_SOURCE[0]}")
-        pwsh "${sdir}\\setup-compilers.ps1"
+        choco.exe upgrade llvm -y --no-progress --allow-downgrade
+        choco.exe upgrade mingw -y --no-progress --allow-downgrade
         ;;
 
     *)
