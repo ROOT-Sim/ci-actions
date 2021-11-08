@@ -11,8 +11,8 @@ case $(uname) in
         ;;
 
     Windows*)
-        choco.exe upgrade llvm -y --no-progress --allow-downgrade
-        choco.exe upgrade mingw -y --no-progress --allow-downgrade
+        choco upgrade llvm -y --no-progress --allow-downgrade
+        #choco upgrade mingw -y --no-progress --allow-downgrade
         ;;
 
     *)

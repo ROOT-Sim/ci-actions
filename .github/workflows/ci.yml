@@ -27,7 +27,7 @@ jobs:
         gcc -v || exit 1
         clang -v || exit 1
     - name: Build & Test
-      uses: ./cmake@v1
+      uses: ./cmake
       with:
         build-dir: ${{ runner.workspace }}/build
         cc: ${{ matrix.compiler }}

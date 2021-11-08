@@ -1,4 +1,4 @@
-# ROOT-Sim Action
+# ROOT-Sim Actions
 
 This is the set of actions that are used across the different ROOT-Sim repositories to support
 CI/CD of the components of the project.
