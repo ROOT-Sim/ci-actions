@@ -1,7 +1,7 @@
 $ErrorActionPreference = "Stop"
 
 $rooturl = "https://github.com/microsoft/Microsoft-MPI/releases/download"
-$version = "10.1.2"
+$version = "10.1.1"
 $baseurl = "$rooturl/v$version"
 
 $tempdir    = $Env:RUNNER_TEMP
