@@ -8,7 +8,7 @@ case $(uname) in
        ;;
 
     Darwin)
-        brew install cmake
+        echo "No need to install anything"
         ;;
 
     Windows*)

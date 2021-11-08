@@ -1,5 +1,7 @@
 # ROOT-Sim Actions
 
+[![ci](https://github.com/ROOT-Sim/ci-actions/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/ROOT-Sim/ci-actions/actions/workflows/ci.yml)
+
 This is the set of actions that are used across the different ROOT-Sim repositories to support
 CI/CD of the components of the project.
 
