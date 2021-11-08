@@ -8,6 +8,3 @@ runs:
     - id: setup-init
       run: ${GITHUB_ACTION_PATH}/setup-mpi.sh
       shell: bash
-    - id: setup-compilers
-      run: ${GITHUB_ACTION_PATH}/setup-compilers.sh
-      shell: bash
