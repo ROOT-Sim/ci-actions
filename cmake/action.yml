@@ -1,6 +1,6 @@
+---
 name: 'Build CMake'
 description: 'Configure, Build and Test a CMake project'
-author: 'Ashutosh Varma'
 inputs:
   source-dir:
     description: Source root directory where top level CMake script is present
@@ -19,6 +19,9 @@ inputs:
     required: false
   cxx:
     description: 'C++ Compiler for toolchain'
+    required: false
+  target:
+    description: CMake build target
     required: false
   run-test:
     description: Run CTest or not
