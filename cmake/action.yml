@@ -16,12 +16,21 @@ inputs:
     required: true
   cc:
     description: 'C Compiler for toolchain'
+    default: cc
     required: false
   cxx:
     description: 'C++ Compiler for toolchain'
+    default: g++
+    required: false
+  cflags:
+    description: 'Initial CFLAGS'
+    required: false
+  cxxflags:
+    description: 'Initial CXXFLAGS'
     required: false
   target:
     description: CMake build target
+    default: all
     required: false
   run-test:
     description: Run CTest or not
@@ -43,5 +52,7 @@ runs:
         INPUT_BUILD_TYPE: ${{ inputs.build-type }}
         INPUT_CC: ${{ inputs.cc }}
         INPUT_CXX: ${{ inputs.cxx }}
+        INPUT_CFLAGS: ${{ inputs.cflags }}
+        INPUT_CXXFLAGS: ${{ inputs.cxxflags }}
         INPUT_TARGET: ${{ inputs.target }}
         INPUT_RUN_TESTS: ${{ inputs.run-test }}

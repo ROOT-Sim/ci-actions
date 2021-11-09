@@ -11,14 +11,17 @@ case $(uname) in
     echo "target: ${INPUT_TARGET}"
     echo "Run tests: ${INPUT_RUN_TESTS}"
 
-#    mkdir build
-#    cd build
-#    cmake ..
-    ;;
+    mkdir -p $INPUT_BUILD_DIR
+    cd $INPUT_BUILD_DIR
+    export CC=$INPUT_CC
+    export CXX=$INPUT_CXX
+    cmake -DCMAKE_BUILD_TYPE=$INPUT_BUILD_TYPE -DCMAKE_C_FLAGS="$INPUT_CFLAGS" -DCMAKE_CXX_FLAGS="$INPUT_CXXFLAGS" $INPUT_SOURCE_DIR
+    make $INPUT_TARGET
 
-#-DCMAKE_BUILD_TYPE=
-#-DCMAKE_CXX_FLAGS=
-#-DCMAKE_C_FLAGS=
+    if [ "$INPUT_RUN_TEST" = "true" ]; then
+      ctest
+    fi
+    ;;
 
   *)
     echo "Unknown platform:" $(uname)
