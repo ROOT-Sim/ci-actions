@@ -3,7 +3,7 @@ set -eu
 
 case $(uname) in
   Linux | Darwin | Windows* | MINGW* | MSYS*)
-    echo "Source dir: ${{ inputs.source-dir }}"
+    echo ${{ inputs.source-dir }}
     echo "Build dir: ${{ inputs.build-dir }}"
     echo "Build type: ${{ inputs.build-type }}"
     echo "CC: ${{ inputs.cc }}"
