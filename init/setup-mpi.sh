@@ -10,7 +10,7 @@ case $(uname) in
     brew install mpich
     ;;
 
-  Windows* | MINGW*)
+  Windows* | MINGW* | MSYS*)
     sdir=$(dirname "${BASH_SOURCE[0]}")
     pwsh "${sdir}\\setup-mpi.ps1"
     ;;

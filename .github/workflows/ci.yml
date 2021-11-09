@@ -23,7 +23,6 @@ jobs:
       uses: ./init
     - name: Test environment
       run: |
-        mpiexec || exit 1
         gcc -v || exit 1
         clang -v || exit 1
     - name: Build & Test

@@ -27,10 +27,6 @@ inputs:
     description: Run CTest or not
     default: 'false'
     required: false
-  submodule-update:
-    description: Update git submodules
-    default: 'false'
-    required: false
 
 runs:
   using: 'composite'

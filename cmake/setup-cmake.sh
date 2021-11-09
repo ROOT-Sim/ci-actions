@@ -11,7 +11,7 @@ case $(uname) in
     echo "No need to install anything"
     ;;
 
-  Windows* | MINGW*)
+  Windows* | MINGW* | MSYS*)
     choco install cmake --installargs 'ADD_CMAKE_TO_PATH=System'
     ;;
 
