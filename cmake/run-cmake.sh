@@ -18,7 +18,7 @@ case $(uname) in
     cmake -DCMAKE_BUILD_TYPE=$INPUT_BUILD_TYPE -DCMAKE_C_FLAGS="$INPUT_CFLAGS" -DCMAKE_CXX_FLAGS="$INPUT_CXXFLAGS" $INPUT_SOURCE_DIR
     make $INPUT_TARGET
 
-    if [ "$INPUT_RUN_TEST" = "true" ]; then
+    if [ "$INPUT_RUN_TESTS" = "true" ]; then
       ctest
     fi
     ;;
