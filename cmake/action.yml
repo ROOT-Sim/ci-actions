@@ -30,6 +30,7 @@ inputs:
     required: false
   target:
     description: CMake build target
+    default: all
     required: false
   run-test:
     description: Run CTest or not
