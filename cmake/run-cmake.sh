@@ -29,7 +29,7 @@ case $(uname) in
     if [ "$target" = "all" ]; then
       target="all_build"
     fi
-    cmake --build . --config $target --target $INPUT_TARGET
+    cmake --build . --config $INPUT_BUILD_TYPE --target $target
     test
     ;;
 
