@@ -12,7 +12,7 @@ case $(uname) in
     ;;
 
   Windows* | MINGW* | MSYS*)
-    choco install doxygen --installargs 'ADD_CMAKE_TO_PATH=System'
+    choco install doxygen.install --installargs 'ADD_CMAKE_TO_PATH=System'
     ;;
 
   *)

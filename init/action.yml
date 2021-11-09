@@ -5,6 +5,9 @@ description: 'Set up a specific MPI implementation.'
 runs:
   using: 'composite'
   steps:
-    - id: setup-init
+    - id: setup-mpi
       run: ${GITHUB_ACTION_PATH}/setup-mpi.sh
+      shell: bash
+    - id: setup-doxygen
+      run: ${GITHUB_ACTION_PATH}/setup-doxygen.sh
       shell: bash

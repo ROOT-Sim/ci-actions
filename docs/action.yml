@@ -35,9 +35,6 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - id: setup-doxygen
-      run: ${GITHUB_ACTION_PATH}/setup-doxygen.sh
-      shell: bash
     - id: generate-docs
       run: ${GITHUB_ACTION_PATH}/generate-docs.sh
       shell: bash
