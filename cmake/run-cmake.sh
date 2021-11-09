@@ -3,13 +3,13 @@ set -eu
 
 case $(uname) in
   Linux | Darwin | Windows* | MINGW* | MSYS*)
-    echo ${{ inputs.source-dir }}
-    echo "Build dir: ${{ inputs.build-dir }}"
-    echo "Build type: ${{ inputs.build-type }}"
-    echo "CC: ${{ inputs.cc }}"
-    echo "CXX: ${{ inputs.cxx }}"
-    echo "target: ${{ inputs.target }}"
-    echo "Run tests: ${{ inputs.run-test }}"
+    echo $INPUT_SOURCE_DIR
+    echo "Build dir: $INPUT_BUILD_DIR"
+    echo "Build type: ${INPUT_BUILD_TYPE}"
+    echo "CC: ${INPUT_CC}"
+    echo "CXX: ${INPUT_CXX}"
+    echo "target: ${INPUT_TARGET}"
+    echo "Run tests: ${INPUT_RUN_TESTS}"
 
 #    mkdir build
 #    cd build

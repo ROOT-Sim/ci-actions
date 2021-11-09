@@ -37,3 +37,11 @@ runs:
     - id: run-cmake
       run: ${GITHUB_ACTION_PATH}/run-cmake.sh
       shell: bash
+      env:
+        INPUT_SOURCE_DIR: ${{ inputs.source-dir }}
+        INPUT_BUILD_DIR: ${{ inputs.build-dir }}
+        INPUT_BUILD_TYPE: ${{ inputs.build-type }}
+        INPUT_CC: ${{ inputs.cc }}
+        INPUT_CXX: ${{ inputs.cxx }}
+        INPUT_TARGET: ${{ inputs.target }}
+        INPUT_RUN_TESTS: ${{ inputs.run-test }}
