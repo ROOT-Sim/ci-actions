@@ -26,9 +26,9 @@ case $(uname) in
   Windows* | MINGW* | MSYS*)
     prepare
     ls
-    target=$INPUT_BUILD_TYPE
+    target=$INPUT_TARGET
     if [ "$target" = "all" ]; then
-      target="all_build"
+      target="ALL_BUILD"
     fi
     cmake --build . --config $INPUT_BUILD_TYPE --target $target
     test
