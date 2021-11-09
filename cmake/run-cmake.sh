@@ -16,6 +16,7 @@ case $(uname) in
     export CC=$INPUT_CC
     export CXX=$INPUT_CXX
     cmake -DCMAKE_BUILD_TYPE=$INPUT_BUILD_TYPE -DCMAKE_C_FLAGS="$INPUT_CFLAGS" -DCMAKE_CXX_FLAGS="$INPUT_CXXFLAGS" $INPUT_SOURCE_DIR
+    ls
     make $INPUT_TARGET
 
     if [ "$INPUT_RUN_TESTS" = "true" ]; then
