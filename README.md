@@ -49,3 +49,19 @@ build_and_test:
           build-type: ${{ matrix.type }}
           run-test: true
 ```
+
+In order to generate the documentation of the project, the following step can be included, which requires that a target
+named `doc` is present in `CMakeLists.txt` to generate the Doxygen documentation:
+
+```yaml
+    - name: Generate Documentation
+      uses: ROOT-Sim/ci-actions/docs@v1
+```
+
+If you want to perform a documentation coverage, the following step can be included. It *must* come after the `docs`
+action. If running in a pull request, it will comment the pull request with information on the coverage.
+
+```yaml
+    - name: Documentation Coverage
+      uses: ROOT-Sim/ci-actions/docs-coverage@v1
+```

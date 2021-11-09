@@ -1,0 +1,10 @@
+---
+name: 'Documentation Coverage'
+description: 'Compute Documentation Coverage'
+
+runs:
+  using: 'composite'
+  steps:
+    - id: documentation-coverage
+      run: ${GITHUB_ACTION_PATH}/doc-coverage.sh
+      shell: bash

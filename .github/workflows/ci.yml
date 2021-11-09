@@ -34,3 +34,5 @@ jobs:
         run-test: true
     - name: Generate Documentation
       uses: ./docs
+    - name: Documentation Coverage
+      uses: ./docs-coverage
