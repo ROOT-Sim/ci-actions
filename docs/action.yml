@@ -1,0 +1,43 @@
+---
+name: 'Build CMake'
+description: 'Configure, Build and Test a CMake project'
+inputs:
+  source-dir:
+    description: Source root directory where top level CMake script is present
+    default: ${{ github.workspace }}
+    required: false
+  build-dir:
+    description: Build directory where build files will be generated
+    default: "${{ github.workspace }}/../build"
+    required: false
+  build-type:              
+    description: 'CMake build type (Release, Debug)'
+    default: 'Release'
+    required: true
+  cc:
+    description: 'C Compiler for toolchain'
+    required: false
+  cxx:
+    description: 'C++ Compiler for toolchain'
+    required: false
+  target:
+    description: CMake build target
+    required: false
+  run-test:
+    description: Run CTest or not
+    default: 'false'
+    required: false
+  submodule-update:
+    description: Update git submodules
+    default: 'false'
+    required: false
+
+runs:
+  using: 'composite'
+  steps:
+    - id: setup-doxygen
+      run: ${GITHUB_ACTION_PATH}/setup-doxygen.sh
+      shell: bash
+    - id: generate-docs
+      run: ${GITHUB_ACTION_PATH}/generate-docs.sh
+      shell: bash

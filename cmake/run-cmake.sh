@@ -25,7 +25,6 @@ case $(uname) in
 
   Windows* | MINGW* | MSYS*)
     prepare
-    ls
     target=$INPUT_TARGET
     if [ "$target" = "all" ]; then
       target="ALL_BUILD"

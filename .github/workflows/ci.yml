@@ -32,3 +32,5 @@ jobs:
         cc: ${{ matrix.compiler }}
         build-type: ${{ matrix.type }}
         run-test: true
+    - name: Generate Documentation
+      uses: ./docs

@@ -9,3 +9,6 @@ link_libraries(${MPI_C_LIBRARIES})
 add_executable(test_program test.c)
 enable_testing()
 add_test(test_program test_program)
+
+find_package(Doxygen REQUIRED)
+doxygen_add_docs(doc ".")
