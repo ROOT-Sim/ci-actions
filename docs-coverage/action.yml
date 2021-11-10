@@ -13,6 +13,6 @@ runs:
     - id: documentation-coverage
       run: ${GITHUB_ACTION_PATH}/doc-coverage.sh
       shell: bash
-      if: ${{ github.event_name == 'pull_request' }}
       env:
         INPUT_THRESHOLD: ${{ inputs.accept-threshold }}
+        EVENT: ${{ github.event_name }}

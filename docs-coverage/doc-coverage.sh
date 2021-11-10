@@ -7,7 +7,11 @@ case $(uname) in
   Linux)
     pip install coverxygen
     cd build
-    $GITHUB_ACTION_PATH/doc_coverage.py -b .
+    if [ "$EVENT" = "pull_request" ]; then
+      $GITHUB_ACTION_PATH/doc_coverage.py -b . -t $INPUT_THRESHOLD -g
+    else
+      $GITHUB_ACTION_PATH/doc_coverage.py -b . -t $INPUT_THRESHOLD
+    fi
     ;;
 
   Darwin | Windows* | MINGW* | MSYS*)
