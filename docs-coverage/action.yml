@@ -20,4 +20,5 @@ runs:
       env:
         INPUT_THRESHOLD: ${{ inputs.accept-threshold }}
         INPUT_BUILD_PATH: ${{ inputs.build-path }}
+        WORKSPACE: ${{ runner.workspace }}
         EVENT: ${{ github.event_name }}
