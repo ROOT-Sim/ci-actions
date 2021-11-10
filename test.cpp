@@ -1,3 +1,11 @@
+/**
+ * @file test.cpp
+ *
+ * SPDX-FileCopyrightText: 2008-2021 HPDCS Group <rootsim@googlegroups.com>
+ * SPDX-License-Identifier: GPL-3.0-only
+ *
+ * @brief A test file for CPP
+ */
 #include <cstdlib>
 #include <ctime>
 #include <iomanip>
@@ -6,6 +14,9 @@
 
 using namespace std;
 
+/**
+ * @brief Print the current time
+ */
 void timestamp()
 {
 #define TIME_SIZE 40
@@ -25,6 +36,16 @@ void timestamp()
 #undef TIME_SIZE
 }
 
+/**
+ * @brief the @c main function.
+ *
+ * This is the entry point of the program, and the only function in this dummy test.
+ *
+ * @param argc the number of arguments
+ * @param argv the vector of arguments
+ *
+ * @return the exit code
+ */
 int main(int argc, char *argv[])
 {
 	int id;

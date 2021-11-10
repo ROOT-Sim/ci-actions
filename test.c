@@ -1,9 +1,11 @@
 /**
  * @file test.c
  *
+ * SPDX-FileCopyrightText: 2008-2021 HPDCS Group <rootsim@googlegroups.com>
+ * SPDX-License-Identifier: GPL-3.0-only
+ *
  * @brief A test file
  */
-
 #include <mpi.h>
 #include <stdio.h>
 

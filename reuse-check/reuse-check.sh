@@ -5,9 +5,7 @@ set -eu
 
 case $(uname) in
   Linux)
-    pip install coverxygen
-    cd build
-    $GITHUB_ACTION_PATH/doc_coverage.py -b .
+    reuse lint
     ;;
 
   Darwin | Windows* | MINGW* | MSYS*)

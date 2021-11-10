@@ -1,0 +1,11 @@
+---
+name: 'REUSE check'
+description: 'Fail if the project is not REUSE compliant'
+
+runs:
+  using: 'composite'
+  steps:
+    - id: documentation-coverage
+      if: ${{ github.event_name == 'pull_request' }}
+      run: ${GITHUB_ACTION_PATH}/reuse-check.sh
+      shell: bash

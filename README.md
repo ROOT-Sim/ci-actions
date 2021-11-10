@@ -12,7 +12,7 @@ Currently, the actions supported are:
 
 ## License
 
-This project is released under the [GPLv3](LICENSE).
+This project is released under the [GPLv3](LICENSES/GPL-3.0-only.txt).
 
 ## Usage
 
@@ -64,4 +64,14 @@ action. If running in a pull request, it will comment the pull request with info
 ```yaml
     - name: Documentation Coverage
       uses: ROOT-Sim/ci-actions/docs-coverage@v1
+      with:
+        accept-threshold: "60.0"
+```
+
+
+If you want to perform a REUSE check (which fails the CI if the check does not pass), you can use the following:
+
+```yaml
+    - name: REUSE check
+      uses: ROOT-Sim/ci-actions/reuse-check@v1
 ```
