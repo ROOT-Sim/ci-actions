@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.10)
 project(ci-actions-test LANGUAGES C CXX)
 
 find_package(MPI REQUIRED)
-add_compile_options(${TARGET_NAME} ${MPI_C_COMPILE_FLAGS} ${MPI_CXX_COMPILE_FLAGS})
+add_compile_options(${TARGET_NAME} ${MPI_CXX_COMPILE_FLAGS})
 include_directories(SYSTEM ${MPI_CXX_INCLUDE_PATH})
 link_libraries(${MPI_CXX_LIBRARIES})
 
