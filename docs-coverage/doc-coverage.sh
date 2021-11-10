@@ -6,12 +6,11 @@ set -eu
 case $(uname) in
   Linux)
     pip install coverxygen
-    pwd
-    find .
+    PWD=$(pwd)
     if [ "$EVENT" = "pull_request" ]; then
-      $GITHUB_ACTION_PATH/doc_coverage.py -b $INPUT_BUILD_PATH -t $INPUT_THRESHOLD -g
+      $GITHUB_ACTION_PATH/doc_coverage.py -b $PWD/$INPUT_BUILD_PATH -t $INPUT_THRESHOLD -g
     else
-      $GITHUB_ACTION_PATH/doc_coverage.py -b $INPUT_BUILD_PATH -t $INPUT_THRESHOLD
+      $GITHUB_ACTION_PATH/doc_coverage.py -b $PWD/$INPUT_BUILD_PATH -t $INPUT_THRESHOLD
     fi
     ;;
 
