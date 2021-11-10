@@ -68,6 +68,23 @@ action. If running in a pull request, it will comment the pull request with info
         accept-threshold: "60.0"
 ```
 
+The previous action creates and environment message in the variable `COMMENT`. You can make an automatic comment in
+a pull request using the following step, after its execution:
+
+```yaml
+      - name: Comment PR
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: ${{env.COMMENT}}
+            })
+```
+
 
 If you want to perform a REUSE check (which fails the CI if the check does not pass), you can use the following:
 
