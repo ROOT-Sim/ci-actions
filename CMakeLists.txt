@@ -1,14 +1,18 @@
 cmake_minimum_required(VERSION 3.10)
-project(ci-actions-test LANGUAGES C)
+project(ci-actions-test LANGUAGES C CXX)
 
 find_package(MPI REQUIRED)
-add_compile_options(${TARGET_NAME} ${MPI_C_COMPILE_FLAGS})
-include_directories(SYSTEM ${MPI_C_INCLUDE_PATH})
-link_libraries(${MPI_C_LIBRARIES})
+add_compile_options(${TARGET_NAME} ${MPI_C_COMPILE_FLAGS} ${MPI_CXX_COMPILE_FLAGS})
+include_directories(SYSTEM ${MPI_CXX_INCLUDE_PATH})
+link_libraries(${MPI_CXX_LIBRARIES})
 
 add_executable(test_program test.c)
+add_executable(test_program_cpp test.cpp)
 enable_testing()
 add_test(test_program test_program)
+add_test(test_program_cpp test_program_cpp)
+add_test(test_mpi mpiexec -n 2 test_program)
+add_test(test_mpi_cpp mpiexec -n 2 test_program_cpp)
 
 find_package(Doxygen)
 doxygen_add_docs(doc ".")
