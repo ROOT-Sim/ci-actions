@@ -18,6 +18,7 @@ args = parser.parse_args()
 
 coverage_target = args.threshold
 root_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+print("ROOT PATH IS ", root_path)
 build_dir = args.build_dir
 xml_dir = f"{build_dir}/xml/"
 src_dir = root_path
