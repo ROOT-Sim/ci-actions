@@ -7,6 +7,7 @@ case $(uname) in
     cd build
     cmake -DDOXYGEN_INPUT_FILTER=$GITHUB_ACTION_PATH/doxygen_spdx_filter.py -DDOXYGEN_GENERATE_XML=YES ..
     cmake --build . --target doc
+    pwd
     find .
     ;;
 

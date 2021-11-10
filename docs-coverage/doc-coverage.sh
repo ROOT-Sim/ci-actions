@@ -5,7 +5,7 @@ case $(uname) in
   Linux)
     pip install coverxygen
     cd build
-    $GITHUB_ACTION_PATH/doc_coverage.py
+    $GITHUB_ACTION_PATH/doc_coverage.py -b .
     ;;
 
   Darwin | Windows* | MINGW* | MSYS*)
