@@ -7,7 +7,11 @@ inputs:
     default: "60"
     required: false
   build-path:
-    description: The path where CMake has generated the docs
+    description: The path where CMake has generated the docs, within the build directory
+    default: .
+    required: false
+  src-path:
+    description: The path where CMake finds the sources, within the repository
     default: .
     required: false
 
@@ -20,5 +24,6 @@ runs:
       env:
         INPUT_THRESHOLD: ${{ inputs.accept-threshold }}
         INPUT_BUILD_PATH: ${{ inputs.build-path }}
+        INPUT_SRC_PATH: ${{ inputs.src-path }}
         WORKSPACE: ${{ runner.workspace }}
         EVENT: ${{ github.event_name }}
