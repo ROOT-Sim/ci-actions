@@ -19,6 +19,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+    - name: REUSE check
+      uses: ./reuse-check
     - name: Initialize Environment
       uses: ./init
     - name: Test environment
@@ -38,5 +40,3 @@ jobs:
       uses: ./docs-coverage
       with:
         accept-threshold: "1.5"
-    - name: REUSE check
-      uses: ./reuse-check
