@@ -1,6 +1,11 @@
 ---
 name: 'Documentation Coverage'
 description: 'Compute Documentation Coverage'
+inputs:
+  accept-threshold:
+    description: The coverage threshold that makes the check pass
+    default: "60"
+    required: false
 
 runs:
   using: 'composite'
@@ -8,3 +13,5 @@ runs:
     - id: documentation-coverage
       run: ${GITHUB_ACTION_PATH}/doc-coverage.sh
       shell: bash
+      env:
+        INPUT_THRESHOLD: ${{ inputs.accept-threshold }}

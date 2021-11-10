@@ -10,12 +10,13 @@ import sys
 parser = argparse.ArgumentParser()
 parser.add_argument("-b", "--build_dir", type=str, default="build",
                     help="choose the build folder where to find the doc")
+parser.add_argument("-t", "--threshold", type=float, default=60.0,
+                    help="The acceptance threshold")
 parser.add_argument("-g", "--github", action='store_true',
                     help="format the output as a GitHub comment for CI")
 args = parser.parse_args()
 
-coverage_target = 60.0
-
+coverage_target = args.threshold
 root_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 build_dir = args.build_dir
 xml_dir = f"{build_dir}/xml/"
