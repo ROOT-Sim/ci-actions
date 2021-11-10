@@ -12,6 +12,7 @@ function prepare() {
 }
 
 function test() {
+  ls
   if [ "$INPUT_RUN_TESTS" = "true" ]; then
     ctest
   fi
@@ -21,7 +22,6 @@ case $(uname) in
   Linux | Darwin)
     prepare
     cmake --build . --config $INPUT_BUILD_TYPE --target $INPUT_TARGET
-
     test
     ;;
 

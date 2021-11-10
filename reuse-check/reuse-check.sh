@@ -5,6 +5,7 @@ set -eu
 
 case $(uname) in
   Linux)
+    pip install reuse
     reuse lint
     ;;
 

@@ -10,6 +10,7 @@ link_libraries(${MPI_CXX_LIBRARIES})
 
 add_executable(test_program test.c)
 add_executable(test_program_cpp test.cpp)
+
 enable_testing()
 add_test(test_program test_program)
 add_test(test_program_cpp test_program_cpp)
