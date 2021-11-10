@@ -10,6 +10,8 @@ import sys
 parser = argparse.ArgumentParser()
 parser.add_argument("-b", "--build_dir", type=str, default="build",
                     help="choose the build folder where to find the doc")
+parser.add_argument("-s", "--src_dir", type=str, default="..",
+                    help="choose the folder where to find the sources")
 parser.add_argument("-t", "--threshold", type=float, default=60.0,
                     help="The acceptance threshold")
 parser.add_argument("-g", "--github", action='store_true',
@@ -20,8 +22,8 @@ coverage_target = args.threshold
 root_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 print("ROOT PATH IS ", root_path)
 build_dir = args.build_dir
-xml_dir = f"build/{build_dir}/xml/"
-src_dir = root_path
+xml_dir = f"{build_dir}/xml/"
+src_dir = args.src_dir
 out_file = f"{build_dir}/coverxygen_output"
 covscope = "public,protected,private".split(",")
 covkind = ("enum,enumvalue,friend,typedef,variable,function,signal,slot,class,"
