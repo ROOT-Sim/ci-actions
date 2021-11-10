@@ -2,10 +2,14 @@
 set -eu
 
 case $(uname) in
-  Linux | Darwin | Windows* | MINGW* | MSYS*)
+  Linux)
     pip install coverxygen
     cd build
     $GITHUB_ACTION_PATH/doc_coverage.py
+    ;;
+
+  Darwin | Windows* | MINGW* | MSYS*)
+    echo "This action is expected to run only in Linux"
     ;;
 
   *)
