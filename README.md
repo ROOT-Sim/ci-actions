@@ -66,6 +66,7 @@ action. If running in a pull request, it will comment the pull request with info
       uses: ROOT-Sim/ci-actions/docs-coverage@v1
       with:
         accept-threshold: "60.0"
+        build-path: build/docs
 ```
 
 The previous action creates and environment message in the variable `COMMENT`. You can make an automatic comment in

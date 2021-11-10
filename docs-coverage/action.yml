@@ -6,6 +6,10 @@ inputs:
     description: The coverage threshold that makes the check pass
     default: "60"
     required: false
+  build-path:
+    description: The path where CMake has generated the docs
+    default: build
+    required: false
 
 runs:
   using: 'composite'
@@ -15,4 +19,5 @@ runs:
       shell: bash
       env:
         INPUT_THRESHOLD: ${{ inputs.accept-threshold }}
+        INPUT_BUILD_PATH: ${{ inputs.build-path }}
         EVENT: ${{ github.event_name }}
