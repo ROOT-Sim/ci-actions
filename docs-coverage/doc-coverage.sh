@@ -6,6 +6,7 @@ set -eu
 case $(uname) in
   Linux)
     pip install coverxygen
+    find .
     cd build
     if [ "$EVENT" = "pull_request" ]; then
       $GITHUB_ACTION_PATH/doc_coverage.py -b . -t $INPUT_THRESHOLD -g
