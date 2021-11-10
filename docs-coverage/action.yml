@@ -8,7 +8,7 @@ inputs:
     required: false
   build-path:
     description: The path where CMake has generated the docs
-    default: build
+    default: .
     required: false
 
 runs:
