@@ -37,6 +37,6 @@ jobs:
     - name: Documentation Coverage
       uses: ./docs-coverage
       with:
-        accept-threshold: "4.5"
+        accept-threshold: "1.5"
     - name: REUSE check
       uses: ./reuse-check
