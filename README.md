@@ -85,6 +85,8 @@ a pull request using the following step, after its execution:
             })
 ```
 
+Also, an env `acceptable` variable with the value 0 or 1 is set, to determine whether the test has passed or not.
+
 
 If you want to perform a REUSE check (which fails the CI if the check does not pass), you can use the following:
 

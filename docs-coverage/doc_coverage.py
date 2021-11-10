@@ -55,9 +55,6 @@ if args.github:
         f.write(message)
 
 acceptable_str = "" if acceptable else "not "
-exit_code = 0 if acceptable else 1
 print(summary_content)
 print(f"Documentation coverage is {acceptable_str}acceptable "
       f"(target: {coverage_target}%)")
-
-sys.exit(exit_code)
