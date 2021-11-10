@@ -19,8 +19,7 @@ parser.add_argument("-g", "--github", action='store_true',
 args = parser.parse_args()
 
 coverage_target = args.threshold
-root_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-print("ROOT PATH IS ", root_path)
+
 build_dir = args.build_dir
 xml_dir = f"{build_dir}/xml/"
 src_dir = args.src_dir
@@ -28,8 +27,16 @@ out_file = f"{build_dir}/coverxygen_output"
 covscope = "public,protected,private".split(",")
 covkind = ("enum,enumvalue,friend,typedef,variable,function,signal,slot,class,"
            "struct,union,define,file,namespace,page").split(",")
-covexclude = [f"{root_path}/README.md"]
+covexclude = [f"{src_dir}/README.md"]
 
+print('BUILD DIR ', build_dir)
+files = os.listdir(build_dir)
+for f in files:
+    print(f)
+print('SRC DIR ', src_dir)
+files = os.listdir(src_dir)
+for f in files:
+    print(f)
 cov_obj = coverxygen.Coverxygen(xml_dir, out_file, covscope, covkind, "summary",
                                 src_dir, None, False, covexclude, [])
 try:
