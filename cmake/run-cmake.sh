@@ -31,6 +31,7 @@ case $(uname) in
     fi
     cmake --build . --config $INPUT_BUILD_TYPE --target $target
     test
+    cat D:/a/ci-actions/build/Testing/Temporary/LastTest.log
     ;;
 
   *)

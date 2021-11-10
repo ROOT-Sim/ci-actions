@@ -18,7 +18,7 @@ coverage_target = 60.0
 
 root_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 build_dir = args.build_dir
-xml_dir = f"{build_dir}/docs/xml/"
+xml_dir = f"{build_dir}/xml/"
 src_dir = root_path
 out_file = f"{build_dir}/coverxygen_output"
 covscope = "public,protected,private".split(",")
