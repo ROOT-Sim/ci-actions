@@ -38,7 +38,7 @@ files = os.listdir(src_dir)
 for f in files:
     print(f)
 cov_obj = coverxygen.Coverxygen(xml_dir, out_file, covscope, covkind, "summary",
-                                src_dir, None, False, covexclude, [])
+                                src_dir, None, True, covexclude, [])
 try:
     cov_obj.process()
 except RuntimeError as l_error:
