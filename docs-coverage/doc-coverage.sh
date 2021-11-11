@@ -10,7 +10,7 @@ case $(uname) in
     if [ "$EVENT" = "pull_request" ]; then
       $GITHUB_ACTION_PATH/doc_coverage.py -s $PWD/$INPUT_SRC_PATH -b $PWD/build/$INPUT_BUILD_PATH -t $INPUT_THRESHOLD -g
     else
-      $GITHUB_ACTION_PATH/doc_coverage.py -s $PWD/$INPUT_SRC_PATH -b $PWD/build/$INPUT_BUILD_PATH -t $INPUT_THRESHOLD
+      $GITHUB_ACTION_PATH/doc_coverage.py -s $PWD -b $PWD/build/$INPUT_BUILD_PATH -t $INPUT_THRESHOLD
     fi
     ;;
 
