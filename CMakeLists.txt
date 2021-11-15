@@ -14,8 +14,6 @@ add_executable(test_program_cpp test.cpp)
 enable_testing()
 add_test(test_program test_program)
 add_test(test_program_cpp test_program_cpp)
-add_test(test_mpi mpiexec -n 2 test_program)
-add_test(test_mpi_cpp mpiexec -n 2 test_program_cpp)
 
 find_package(Doxygen)
 doxygen_add_docs(doc ".")

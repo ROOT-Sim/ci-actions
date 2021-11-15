@@ -34,8 +34,6 @@ jobs:
         cc: ${{ matrix.compiler }}
         build-type: ${{ matrix.type }}
         run-test: true
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
     - name: Generate Documentation
       uses: ./docs
     - name: Documentation Coverage
