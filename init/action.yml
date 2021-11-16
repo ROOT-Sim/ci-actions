@@ -1,12 +1,15 @@
 ---
-name: 'Setup MPI'
-description: 'Set up a specific MPI implementation.'
+name: 'Initialize Environment'
+description: 'Install packages required by ROOT-Sim development.'
 
 runs:
   using: 'composite'
   steps:
     - id: setup-mpi
       run: ${GITHUB_ACTION_PATH}/setup-mpi.sh
+      shell: bash
+    - id: setup-llvm
+      run: ${GITHUB_ACTION_PATH}/setup-llvm.sh
       shell: bash
     - id: setup-doxygen
       run: ${GITHUB_ACTION_PATH}/setup-doxygen.sh
