@@ -12,9 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ ubuntu-latest, windows-latest, macos-latest ]
-#        compiler: [ clang, gcc ]
-        compiler: [ clang ]
-#        type: [ Debug, Release ]
+        compiler: [ gcc ]
         type: [ Debug ]
     steps:
     - name: Checkout
