@@ -22,7 +22,7 @@ case $(uname) in
   Linux | Darwin)
     prepare
     cmake --build . --config $INPUT_BUILD_TYPE --target $INPUT_TARGET
-    test || cat /Users/runner/work/ci-actions/build/Testing/Temporary/LastTest.log
+    test --rerun-failed --output-on-failure || cat /Users/runner/work/ci-actions/build/Testing/Temporary/LastTest.log
     ;;
 
   Windows* | MINGW* | MSYS*)
