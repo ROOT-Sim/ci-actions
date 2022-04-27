@@ -53,7 +53,7 @@ doc_cov_match = next(re.finditer(r"\d*\.\d+|\d+", total_line))
 acceptable = float(doc_cov_match[0]) >= coverage_target
 
 if args.github:
-    icon = ":+1" if acceptable else ":exclamation:"
+    icon = ":+1:" if acceptable else ":exclamation:"
     acceptable_val = 1 if acceptable else 0
     message = "COMMENT="
     message += f"\"Documentation coverage is **{doc_cov_match[0]}%** {icon}\\n"
