@@ -94,7 +94,7 @@ If you want to perform a REUSE check (which fails the CI if the check does not p
 
 ```yaml
     - name: REUSE check
-      uses: ROOT-Sim/ci-actions/reuse-check@v1.3
+      uses: ROOT-Sim/ci-actions/reuse-check@v1.2
 ```
 
 Another available action allows to deploy the documentation into a GitHub Pages website in the current repository.
@@ -102,9 +102,7 @@ This action can be used as such:
 
 ```yaml
     - name: Website Deployment
-      uses: ROOT-Sim/ci-actions/website-deploy@v1.3
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+      uses: ROOT-Sim/ci-actions/website-deploy@v1.2
 ```
 
 The documentation will be deployed in the `/docs/[branchname]/` path, where `[branchname]` is either `master` or 
