@@ -23,8 +23,7 @@ jobs:
       uses: ./init
     - name: Test environment
       run: |
-        gcc -v || exit 1
-        clang -v || exit 1
+        $INPUT_CC -v || exit 1
     - name: Build & Test
       uses: ./cmake
       with:

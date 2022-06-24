@@ -10,7 +10,12 @@ case $(uname) in
    ;;
 
   Darwin)
-    echo "No need to install anything"
+    if [ "$INPUT_CC" = "gcc" ]; then
+      INPUT_CC=gcc-10
+    fi
+    if [ "$INPUT_CXX" = "g++" ]; then
+      INPUT_CXX=g++-10
+    fi
     ;;
 
   Windows* | MINGW* | MSYS*)
@@ -18,7 +23,7 @@ case $(uname) in
     ;;
 
   *)
-    echo "Unknown platform:" $(uname)
+    echo "Unknown platform: $(uname)"
     exit 1
     ;;
 esac
