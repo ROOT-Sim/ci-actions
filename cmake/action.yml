@@ -16,7 +16,7 @@ inputs:
     required: true
   cc:
     description: 'C Compiler for toolchain'
-    default: cc
+    default: gcc
     required: false
   cxx:
     description: 'C++ Compiler for toolchain'

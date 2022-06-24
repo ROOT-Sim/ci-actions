@@ -3,6 +3,14 @@
 # SPDX-License-Identifier: GPL-3.0-only
 set -eu
 
+if [ "$(uname)" = "Darwin" ]; then
+  if [ "$INPUT_CC" = "gcc" ]; then
+    INPUT_CC="gcc-10"
+  fi
+  if [ "$INPUT_CXX" = "g++" ]; then
+    INPUT_CXX="g++-10"
+  fi
+fi
 
 case $(uname) in
   Linux | Darwin | Windows* | MINGW* | MSYS*)
@@ -16,7 +24,7 @@ case $(uname) in
     ;;
 
   *)
-    echo "Unknown platform:" $(uname)
+    echo "Unknown platform: $(uname)"
     exit 1
     ;;
 esac

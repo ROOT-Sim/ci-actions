@@ -23,7 +23,8 @@ jobs:
       uses: ./init
     - name: Test environment
       run: |
-        $INPUT_CC -v || exit 1
+        gcc -v || exit 1
+        clang -v || exit 1
     - name: Build & Test
       uses: ./cmake
       with:
@@ -37,3 +38,5 @@ jobs:
       uses: ./docs-coverage
       with:
         accept-threshold: "1.5"
+    - name: Website Deploy
+      uses: ./website-deploy

@@ -10,12 +10,7 @@ case $(uname) in
    ;;
 
   Darwin)
-    if [ "$INPUT_CC" = "gcc" ]; then
-      INPUT_CC=gcc-10
-    fi
-    if [ "$INPUT_CXX" = "g++" ]; then
-      INPUT_CXX=g++-10
-    fi
+    echo "Nothing to install"
     ;;
 
   Windows* | MINGW* | MSYS*)
