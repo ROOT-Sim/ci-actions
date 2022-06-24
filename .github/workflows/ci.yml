@@ -12,11 +12,11 @@ jobs:
       fail-fast: false
       matrix:
         os: [ ubuntu-latest, windows-latest, macos-latest ]
-        compiler: [ gcc, clang ]
+        compiler: [ gcc ]
         type: [ Debug ]
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: REUSE check
       uses: ./reuse-check
     - name: Initialize Environment
@@ -38,5 +38,5 @@ jobs:
       uses: ./docs-coverage
       with:
         accept-threshold: "1.5"
-    - name: Website Deploy
+    - name: Website Deployment
       uses: ./website-deploy

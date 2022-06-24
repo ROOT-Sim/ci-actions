@@ -17,7 +17,7 @@ case $(uname) in
     ;;
 
   *)
-    echo "Unknown platform:" $(uname)
+    echo "Unknown platform: $(uname)"
     exit 1
     ;;
 esac

@@ -1,0 +1,24 @@
+---
+name: 'GH Pages Deploy'
+description: 'Deploy the generated documentation on the GitHub Pages website'
+inputs:
+  pages-branch:
+    description: The branch where the pages website is stored
+    default: "gh-pages"
+    required: false
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Get current website
+      uses: actions/checkout@v3
+      with:
+        ref: gh-pages
+        persist-credentials: true
+        path: website
+    - id: website-deploy
+      run: ${GITHUB_ACTION_PATH}/website-deploy.sh
+      shell: bash
+      env:
+        PAGES_BRANCH: ${{ inputs.pages-branch }}
+        BRANCH_NAME: ${{ github.head_ref || github.ref_name }}

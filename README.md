@@ -40,11 +40,11 @@ build_and_test:
         type: [ Debug, Release ]
     steps:
       - name: Checkpout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Initialize Environment
-        uses: ROOT-Sim/ci-actions/init@v1
+        uses: ROOT-Sim/ci-actions/init@v1.2
       - name: Build & Test
-        uses: ROOT-Sim/ci-actions/cmake@v1
+        uses: ROOT-Sim/ci-actions/cmake@v1.2
         with:
           build-dir: ${{ runner.workspace }}/build
           cc: ${{ matrix.compiler }}
@@ -57,7 +57,7 @@ named `doc` is present in `CMakeLists.txt` to generate the Doxygen documentation
 
 ```yaml
     - name: Generate Documentation
-      uses: ROOT-Sim/ci-actions/docs@v1
+      uses: ROOT-Sim/ci-actions/docs@v1.2
 ```
 
 If you want to perform a documentation coverage, the following step can be included. It *must* come after the `docs`
@@ -65,7 +65,7 @@ action. If running in a pull request, it will comment the pull request with info
 
 ```yaml
     - name: Documentation Coverage
-      uses: ROOT-Sim/ci-actions/docs-coverage@v1
+      uses: ROOT-Sim/ci-actions/docs-coverage@v1.2
       with:
         accept-threshold: "60.0"
         build-path: build/docs
@@ -90,10 +90,24 @@ a pull request using the following step, after its execution:
 
 Also, an env `acceptable` variable with the value 0 or 1 is set, to determine whether the test has passed or not.
 
-
 If you want to perform a REUSE check (which fails the CI if the check does not pass), you can use the following:
 
 ```yaml
     - name: REUSE check
-      uses: ROOT-Sim/ci-actions/reuse-check@v1
+      uses: ROOT-Sim/ci-actions/reuse-check@v1.3
 ```
+
+Another available action allows to deploy the documentation into a GitHub Pages website in the current repository.
+This action can be used as such:
+
+```yaml
+    - name: Website Deployment
+      uses: ROOT-Sim/ci-actions/website-deploy@v1.3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+```
+
+The documentation will be deployed in the `/docs/[branchname]/` path, where `[branchname]` is either `master` or 
+`develop`. The documentation is not actually deployed for any other branch.
+Additionally, it will copy the `README.md` file in the root directory of the website: if it is used in the site, the
+content of the page will therefore be automatically updated.

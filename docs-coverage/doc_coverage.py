@@ -6,6 +6,7 @@ import coverxygen
 import os
 import re
 import sys
+import json
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-b", "--build_dir", type=str, default="build",
@@ -68,3 +69,11 @@ acceptable_str = "" if acceptable else "not "
 print(summary_content)
 print(f"Documentation coverage is {acceptable_str}acceptable "
       f"(target: {coverage_target}%)")
+
+badge_json = {'schemaVersion': 1,
+              'label': "doc coverage",
+              'message': f"{doc_cov_match[0]}%",
+              'color': "green" if acceptable else "red"}
+
+with open("coverage.json", "w", encoding = 'utf-8') as f:
+    json.dump(badge_json, f)
