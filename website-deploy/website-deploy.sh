@@ -12,7 +12,7 @@ case $(uname) in
     [ ! -e "website/docs/$BRANCH_NAME" ] || rm -rf "website/docs/$BRANCH_NAME"
     mkdir -p "website/docs/"
     mv coverage.json "website/docs/$BRANCH_NAME.json"
-    mv build/html "website/docs/$BRANCH_NAME"
+    mv "build/$INPUT_BUILD_PATH/html" "website/docs/$BRANCH_NAME"
     mv README.md website
     cd website
     git add .
