@@ -3,9 +3,9 @@
 # SPDX-License-Identifier: GPL-3.0-only
 set -eu
 
-if [ "$BRANCH_NAME" != "master" ] && [ "$BRANCH_NAME" != "develop" ]; then
-  exit 0
-fi
+#if [ "$BRANCH_NAME" != "master" ] && [ "$BRANCH_NAME" != "develop" ]; then
+#  exit 0
+#fi
 
 case $(uname) in
   Linux)
