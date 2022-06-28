@@ -6,6 +6,10 @@ inputs:
     description: The branch where the pages website is stored
     default: "gh-pages"
     required: false
+  build-path:
+    description: The path where CMake has generated the docs, within the build directory
+    default: .
+    required: false
 
 runs:
   using: 'composite'
@@ -16,9 +20,15 @@ runs:
         ref: gh-pages
         persist-credentials: true
         path: website
+#    - name: Setup upterm session
+#      uses: lhotari/action-upterm@v1
+#      with:
+#        ## limits ssh access and adds the ssh public key for the user which triggered the workflow
+#        limit-access-to-actor: false
     - id: website-deploy
       run: ${GITHUB_ACTION_PATH}/website-deploy.sh
       shell: bash
       env:
         PAGES_BRANCH: ${{ inputs.pages-branch }}
         BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+        INPUT_BUILD_PATH: ${{ inputs.build-path }}

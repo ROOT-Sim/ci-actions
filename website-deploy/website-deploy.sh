@@ -3,16 +3,16 @@
 # SPDX-License-Identifier: GPL-3.0-only
 set -eu
 
-if [ "$BRANCH_NAME" != "master" ] && [ "$BRANCH_NAME" != "develop" ]; then
-  exit 0
-fi
+#if [ "$BRANCH_NAME" != "master" ] && [ "$BRANCH_NAME" != "develop" ]; then
+#  exit 0
+#fi
 
 case $(uname) in
   Linux)
     [ ! -e "website/docs/$BRANCH_NAME" ] || rm -rf "website/docs/$BRANCH_NAME"
     mkdir -p "website/docs/"
     mv coverage.json "website/docs/$BRANCH_NAME.json"
-    mv build/html "website/docs/$BRANCH_NAME"
+    mv "build/$INPUT_BUILD_PATH/html" "website/docs/$BRANCH_NAME"
     mv README.md website
     cd website
     git add .
