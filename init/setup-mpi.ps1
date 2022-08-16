@@ -1,33 +1,12 @@
 $ErrorActionPreference = "Stop"
 
-$rooturl = "https://github.com/microsoft/Microsoft-MPI/releases/download"
-$version = "10.1.1"
-$baseurl = "$rooturl/v$version"
+$mpi_url = "https://registrationcenter-download.intel.com/akdlm/irc_nas/18715/w_mpi_oneapi_p_2021.6.0.546_offline.exe"
 
-$tempdir    = $Env:RUNNER_TEMP
-$msmpisdk   = Join-Path $tempdir msmpisdk.msi
-$msmpisetup = Join-Path $tempdir msmpisetup.exe
+$tempdir = $Env:RUNNER_TEMP
+$mpi_installer_path = Join-Path $tempdir intel_installer.exe
 
-Write-Host "Downloading Microsoft MPI $version"
-Invoke-WebRequest "$baseurl/msmpisdk.msi"   -OutFile $msmpisdk
-Invoke-WebRequest "$baseurl/msmpisetup.exe" -OutFile $msmpisetup
+Write-Host "Downloading Intel MPI from $mpi_url"
+Invoke-WebRequest "$mpi_url" -OutFile $mpi_installer_path
 
-Write-Host "Installing Microsoft MPI $version"
-Start-Process msiexec.exe -ArgumentList "/quiet /passive /qn /i $msmpisdk" -Wait
-Start-Process $msmpisetup -ArgumentList "-unattend" -Wait
-
-if ($Env:GITHUB_ENV) {
-  Write-Host 'Adding environment variables to $GITHUB_ENV'
-  $envlist = @("MSMPI_BIN", "MSMPI_INC", "MSMPI_LIB32", "MSMPI_LIB64")
-  foreach ($name in $envlist) {
-    $value = [Environment]::GetEnvironmentVariable($name, "Machine")
-    Write-Host "$name=$value"
-    Add-Content $Env:GITHUB_ENV "$name=$value"
-  }
-}
-
-if ($Env:GITHUB_PATH) {
-  Write-Host 'Adding $MSMPI_BIN to $GITHUB_PATH'
-  $MSMPI_BIN = [Environment]::GetEnvironmentVariable("MSMPI_BIN", "Machine")
-  Add-Content $Env:GITHUB_PATH $MSMPI_BIN
-}
+Write-Host "Installing Intel MPI"
+Start-Process $mpi_installer_path -ArgumentList "--silent -a --silent --action=install --eula=accept" -Wait
