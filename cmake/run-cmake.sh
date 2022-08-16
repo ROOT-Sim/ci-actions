@@ -14,7 +14,8 @@ fi
 
 case $(uname) in
   Windows* | MINGW* | MSYS*)
-    export MPI_HOME="/c/Program Files (x86)/Intel/oneAPI/mpi"
+    export I_MPI_ROOT="c:/Program Files (x86)/Intel/oneAPI/mpi"
+    export MPIEXEC_EXECUTABLE="c:/Program Files (x86)/Intel/oneAPI/mpi/bin/mpiexec.exe"
     ;;
 
   *)
