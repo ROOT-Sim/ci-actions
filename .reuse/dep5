@@ -18,7 +18,3 @@ License: GPL-3.0-only
 Files: *.yml
 Copyright: 2008-2021 HPDCS Group <rootsim@googlegroups.com>
 License: GPL-3.0-only
-
-Files: init/setup-mpi.ps1
-Copyright: 2021 Lisandro Dalcin <dalcinl@gmail.com>
-License: MIT
