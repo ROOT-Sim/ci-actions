@@ -17,7 +17,7 @@ cd "$INPUT_BUILD_DIR"
 
 case $(uname) in
 Linux | Darwin)
-  ./run-cmake-helper.sh
+  "${GITHUB_ACTION_PATH}"/run-cmake-helper.sh
   ;;
 
 Windows* | MINGW* | MSYS*)
