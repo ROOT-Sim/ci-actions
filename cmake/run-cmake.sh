@@ -12,29 +12,25 @@ if [ "$(uname)" = "Darwin" ]; then
   fi
 fi
 
-case $(uname) in
-  Windows* | MINGW* | MSYS*)
-    export I_MPI_ROOT="c:/Program Files (x86)/Intel/oneAPI/mpi"
-    export MPIEXEC_PATH="c:/Program Files (x86)/Intel/oneAPI/mpi/bin/mpiexec.exe"
-    ;;
-
-  *)
-    ;;
-esac
+mkdir -p "$INPUT_BUILD_DIR"
+cd "$INPUT_BUILD_DIR"
 
 case $(uname) in
-  Linux | Darwin | Windows* | MINGW* | MSYS*)
-    mkdir -p "$INPUT_BUILD_DIR"
-    cd "$INPUT_BUILD_DIR"
-    cmake --trace-expand -G "Unix Makefiles" -DMPIEXEC_EXECUTABLE="$MPIEXEC_PATH" -DCMAKE_C_COMPILER=$INPUT_CC -DCMAKE_CXX_COMPILER=$INPUT_CXX -DCMAKE_BUILD_TYPE="$INPUT_BUILD_TYPE" -DCMAKE_C_FLAGS="$INPUT_CFLAGS" -DCMAKE_CXX_FLAGS="$INPUT_CXXFLAGS" "$INPUT_SOURCE_DIR"
-    cmake --build . --config "$INPUT_BUILD_TYPE" --target "$INPUT_TARGET"
-    if [ "$INPUT_RUN_TESTS" = "true" ]; then
-      ctest --rerun-failed --output-on-failure
-    fi
-    ;;
+Linux | Darwin)
+  ./run-cmake-helper.sh
+  ;;
 
-  *)
-    echo "Unknown platform: $(uname)"
-    exit 1
-    ;;
+Windows* | MINGW* | MSYS*)
+  cmd.exe "/K" '"C:\Program Files (x86)\Intel\oneAPI\setvars.bat" && "git-bash.exe ./run-cmake-helper.sh"'
+  ;;
+*)
+
+  echo "Unknown platform: $(uname)"
+  exit 1
+  ;;
 esac
+
+cmake --build . --config "$INPUT_BUILD_TYPE" --target "$INPUT_TARGET"
+if [ "$INPUT_RUN_TESTS" = "true" ]; then
+  ctest --rerun-failed --output-on-failure
+fi
