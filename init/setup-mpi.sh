@@ -13,10 +13,9 @@ case $(uname) in
     ;;
 
   Windows* | MINGW* | MSYS*)
-    mpi_url="https://registrationcenter-download.intel.com/akdlm/irc_nas/18715/w_mpi_oneapi_p_2021.6.0.546_offline.exe"
-    curl -o intel_installer.exe $mpi_url
-    ./intel_installer.exe --silent -a --silent --action=install --eula=accept
-    rm ./intel_installer.exe
+    pip install dpcpp-cpp-rt
+    pip install impi-devel
+    pip install impi_rt
     ;;
 
   *)
