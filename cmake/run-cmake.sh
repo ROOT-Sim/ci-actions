@@ -21,7 +21,7 @@ Linux | Darwin)
   ;;
 
 Windows* | MINGW* | MSYS*)
-  cmd.exe /C "\"C:\Program Files (x86)\Intel\oneAPI\setvars.bat\" && bash \"${GITHUB_ACTION_PATH}/run-cmake-helper.sh\""
+  cmd.exe /C "\"C:\Program Files (x86)\Intel\oneAPI\setvars.bat\" && bash ${GITHUB_ACTION_PATH}/run-cmake-helper.sh"
   ;;
 *)
 
