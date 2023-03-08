@@ -21,8 +21,6 @@ Linux | Darwin)
   ;;
 
 Windows* | MINGW* | MSYS*)
-  export I_MPI_CC=${INPUT_CC}
-  export I_MPI_CXX=${INPUT_CXX}
   "${GITHUB_ACTION_PATH}"/run-cmake-helper.sh
   ;;
 *)
