@@ -25,6 +25,14 @@ case $(uname) in
     echo "${I_MPI_ROOT}\bin\release" >> $GITHUB_PATH
     echo "${I_MPI_ROOT}\libfabric\bin" >> $GITHUB_PATH
     echo "${I_MPI_ROOT}\libfabric\bin\utils" >> $GITHUB_PATH
+
+    ONEAPI_ROOT="/c/Program Files (x86)/Intel/oneAPI"
+    I_MPI_ROOT="${ONEAPI_ROOT}/mpi/latest"
+    export PATH="${I_MPI_ROOT}/bin:$PATH"
+    export PATH="${I_MPI_ROOT}/bin/release:$PATH"
+    export PATH="${I_MPI_ROOT}/bin/libfabric/bin:$PATH"
+
+    hydra_service.exe -install
     ;;
 
   *)
