@@ -14,6 +14,7 @@ case $(uname) in
     ;;
 
   Windows* | MINGW* | MSYS*)
+    echo "Nothing to install"
     ;;
 
   *)

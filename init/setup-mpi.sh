@@ -33,7 +33,9 @@ case $(uname) in
     export PATH="${I_MPI_ROOT}/bin/libfabric/bin:$PATH"
 
     hydra_service.exe -install
-    cp "${I_MPI_ROOT}\bin\release\impi.dll" "${SystemRoot}\System32"
+
+    sdir=$(dirname "${BASH_SOURCE[0]}")
+    pwsh "${sdir}\\copy-mpi-lib.ps1"
     ;;
 
   *)
