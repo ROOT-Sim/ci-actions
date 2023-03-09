@@ -21,7 +21,6 @@ case $(uname) in
     I_MPI_ROOT="${ONEAPI_ROOT}\mpi\latest"
     echo "ONEAPI_ROOT=${ONEAPI_ROOT}" >> $GITHUB_ENV
     echo "I_MPI_ROOT=${I_MPI_ROOT}" >> $GITHUB_ENV
-    echo "MPI_HOME=${I_MPI_ROOT}" >> $GITHUB_ENV
     echo "${I_MPI_ROOT}\bin" >> $GITHUB_PATH
     echo "${I_MPI_ROOT}\bin\release" >> $GITHUB_PATH
     echo "${I_MPI_ROOT}\libfabric\bin" >> $GITHUB_PATH
@@ -34,6 +33,7 @@ case $(uname) in
     export PATH="${I_MPI_ROOT}/bin/libfabric/bin:$PATH"
 
     hydra_service.exe -install
+    cp "${I_MPI_ROOT}\bin\release\impi.dll" "${SystemRoot}\System32"
     ;;
 
   *)
