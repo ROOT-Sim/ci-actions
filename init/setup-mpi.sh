@@ -13,29 +13,34 @@ case $(uname) in
     ;;
 
   Windows* | MINGW* | MSYS*)
-    installer_name=w_mpi_oneapi_p_2021.8.0.25543_offline.exe
-    base_url=https://registrationcenter-download.intel.com/akdlm/irc_nas/19160
-    curl -sO $base_url/$installer_name
-    ./$installer_name -s -a --silent --eula accept
+    url=https://registrationcenter-download.intel.com/akdlm/IRC_NAS/c11b9bf0-2527-4925-950d-186dba31fb40
+    package=w_mpi_oneapi_p_2021.9.0.43421_offline.exe
+    curl -sO $url/$package
+    ./$package -s -a --silent --eula accept
+
     ONEAPI_ROOT="C:\Program Files (x86)\Intel\oneAPI"
     I_MPI_ROOT="${ONEAPI_ROOT}\mpi\latest"
+    library_kind="release"
+    I_MPI_OFI_LIBRARY_INTERNAL="1"
+
     echo "ONEAPI_ROOT=${ONEAPI_ROOT}" >> $GITHUB_ENV
     echo "I_MPI_ROOT=${I_MPI_ROOT}" >> $GITHUB_ENV
-    echo "${I_MPI_ROOT}\bin" >> $GITHUB_PATH
-    echo "${I_MPI_ROOT}\bin\release" >> $GITHUB_PATH
-    echo "${I_MPI_ROOT}\libfabric\bin" >> $GITHUB_PATH
-    echo "${I_MPI_ROOT}\libfabric\bin\utils" >> $GITHUB_PATH
+    echo "library_kind=${library_kind}" >> $GITHUB_ENV
+    echo "I_MPI_OFI_LIBRARY_INTERNAL=${I_MPI_OFI_LIBRARY_INTERNAL}" >> $GITHUB_ENV
+
+    echo "${I_MPI_ROOT}\\bin" >> $GITHUB_PATH
+    echo "${I_MPI_ROOT}\\bin\\$library_kind" >> $GITHUB_PATH
+    echo "${I_MPI_ROOT}\\libfabric\\bin" >> $GITHUB_PATH
+    echo "${I_MPI_ROOT}\\libfabric\\bin\\utils" >> $GITHUB_PATH
 
     ONEAPI_ROOT="/c/Program Files (x86)/Intel/oneAPI"
     I_MPI_ROOT="${ONEAPI_ROOT}/mpi/latest"
     export PATH="${I_MPI_ROOT}/bin:$PATH"
-    export PATH="${I_MPI_ROOT}/bin/release:$PATH"
-    export PATH="${I_MPI_ROOT}/bin/libfabric/bin:$PATH"
+    export PATH="${I_MPI_ROOT}/bin/$library_kind:$PATH"
+    export PATH="${I_MPI_ROOT}/libfabric/bin:$PATH"
+    export PATH="${I_MPI_ROOT}/libfabric/bin/utils:$PATH"
 
     hydra_service.exe -install
-
-    sdir=$(dirname "${BASH_SOURCE[0]}")
-    pwsh "${sdir}\\copy-mpi-lib.ps1"
     ;;
 
   *)
