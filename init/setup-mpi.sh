@@ -3,6 +3,10 @@
 # SPDX-License-Identifier: GPL-3.0-only
 set -eu
 
+if test "x$WITHMPI" = 'xno'; then
+  exit 0
+fi
+
 case $(uname) in
   Linux)
    sudo apt install -y -q openmpi-bin libopenmpi-dev

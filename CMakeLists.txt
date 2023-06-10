@@ -16,4 +16,4 @@ add_test(test_program test_program)
 add_test(test_program_cpp test_program_cpp)
 
 find_package(Doxygen)
-doxygen_add_docs(doc ".")
+doxygen_add_docs(doc-for-test ".")
