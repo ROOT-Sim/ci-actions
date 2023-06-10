@@ -1,6 +1,11 @@
 ---
 name: 'Generate Documentation'
 description: 'Generate Documentation'
+inputs:
+  docs-target:
+    description: The CMake target used to generate the docs
+    default: doc
+    required: false
 
 runs:
   using: 'composite'
@@ -8,3 +13,5 @@ runs:
     - id: documentation-coverage
       run: ${GITHUB_ACTION_PATH}/generate-docs.sh
       shell: bash
+      env:
+        TARGET: ${{ inputs.docs-target }}
