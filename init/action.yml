@@ -1,6 +1,15 @@
 ---
 name: 'Initialize Environment'
 description: 'Install packages required by ROOT-Sim development.'
+inputs:
+  with-mpi:
+    description: Specify whether to provide MPI in the environment
+    default: yes
+    required: false
+  with-doxygen:
+    description: Specify whether to configure Doxygen in the environment
+    default: yes
+    required: false
 
 runs:
   using: 'composite'
@@ -8,9 +17,13 @@ runs:
     - id: setup-mpi
       run: ${GITHUB_ACTION_PATH}/setup-mpi.sh
       shell: bash
+      env:
+        WITHMPI: ${{ inputs.with-mpi }}
     - id: setup-llvm
       run: ${GITHUB_ACTION_PATH}/setup-llvm.sh
       shell: bash
     - id: setup-doxygen
       run: ${GITHUB_ACTION_PATH}/setup-doxygen.sh
       shell: bash
+      env:
+        WITHDOXYGEN: ${{ inputs.with-doxygen }}

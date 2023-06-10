@@ -42,9 +42,9 @@ build_and_test:
       - name: Checkpout repository
         uses: actions/checkout@v3
       - name: Initialize Environment
-        uses: ROOT-Sim/ci-actions/init@v1.2
+        uses: ROOT-Sim/ci-actions/init@v1.4
       - name: Build & Test
-        uses: ROOT-Sim/ci-actions/cmake@v1.2
+        uses: ROOT-Sim/ci-actions/cmake@v1.4
         with:
           build-dir: ${{ runner.workspace }}/build
           cc: ${{ matrix.compiler }}
@@ -52,12 +52,36 @@ build_and_test:
           run-test: true
 ```
 
-In order to generate the documentation of the project, the following step can be included, which requires that a target
-named `doc` is present in `CMakeLists.txt` to generate the Doxygen documentation:
+Note that the `init` action, by default, installs all the dependencies that are used by the ROOT-Sim
+core project, both for building and for documentation purposes. Among them, there are the MPI library
+and Doxygen. These dependencies take time to be configured, especially on Windows and Linux. If some
+project does not need them, they can be phased out from the initialization. This can be done as
+follows:
+
+```yaml
+    - name: Initialize Environment
+      uses: ROOT-Sim/ci-actions/init@v1.4
+      with:
+        with-mpi: no
+        with-doxygen: no
+```
+
+In order to generate the documentation of the project, the following step can be included to generate the Doxygen
+documentation:
 
 ```yaml
     - name: Generate Documentation
-      uses: ROOT-Sim/ci-actions/docs@v1.2
+      uses: ROOT-Sim/ci-actions/docs@v1.4
+```
+
+Note that in the above case, it is automatically triggering the build of a `doc` target from `CMakeLists.txt`.
+If the target to generate Doxygen documentation is different, it can be specified with the `docs-target` parameter:
+
+```yaml
+    - name: Generate Documentation
+      uses: ROOT-Sim/ci-actions/docs@v1.4
+      with:
+        docs-target: generate-documentation
 ```
 
 If you want to perform a documentation coverage, the following step can be included. It *must* come after the `docs`
@@ -65,7 +89,7 @@ action. If running in a pull request, it will comment the pull request with info
 
 ```yaml
     - name: Documentation Coverage
-      uses: ROOT-Sim/ci-actions/docs-coverage@v1.2
+      uses: ROOT-Sim/ci-actions/docs-coverage@v1.4
       with:
         accept-threshold: "60.0"
         build-path: build/docs
@@ -94,7 +118,7 @@ If you want to perform a REUSE check (which fails the CI if the check does not p
 
 ```yaml
     - name: REUSE check
-      uses: ROOT-Sim/ci-actions/reuse-check@v1.2
+      uses: ROOT-Sim/ci-actions/reuse-check@v1.4
 ```
 
 Another available action allows to deploy the documentation into a GitHub Pages website in the current repository.
@@ -102,7 +126,7 @@ This action can be used as such:
 
 ```yaml
     - name: Website Deployment
-      uses: ROOT-Sim/ci-actions/website-deploy@v1.2
+      uses: ROOT-Sim/ci-actions/website-deploy@v1.4
 ```
 
 The documentation will be deployed in the `/docs/[branchname]/` path, where `[branchname]` is either `master` or 
