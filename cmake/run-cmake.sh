@@ -5,10 +5,10 @@ set -eu
 
 if [ "$(uname)" = "Darwin" ]; then
   if [ "$INPUT_CC" = "gcc" ]; then
-    INPUT_CC="gcc-10"
+    INPUT_CC="gcc-11"
   fi
   if [ "$INPUT_CXX" = "g++" ]; then
-    INPUT_CXX="g++-10"
+    INPUT_CXX="g++-11"
   fi
 fi
 
