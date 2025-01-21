@@ -40,5 +40,3 @@ jobs:
       uses: ./docs-coverage
       with:
         accept-threshold: "1.5"
-    - name: Website Deployment
-      uses: ./website-deploy
