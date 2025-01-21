@@ -41,8 +41,6 @@ case $(uname) in
     I_MPI_ROOT="${ONEAPI_ROOT}/mpi/latest"
     export PATH="${I_MPI_ROOT}/bin:$PATH"
     export PATH="${I_MPI_ROOT}/bin/$library_kind:$PATH"
-    export PATH="${I_MPI_ROOT}/libfabric/bin:$PATH"
-    export PATH="${I_MPI_ROOT}/libfabric/bin/utils:$PATH"
 
     hydra_service.exe -install
     ;;

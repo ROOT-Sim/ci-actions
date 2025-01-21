@@ -19,7 +19,7 @@ case $(uname) in
     ;;
 
   Windows* | MINGW* | MSYS*)
-#   choco install doxygen.install --installargs 'ADD_CMAKE_TO_PATH=System' temporarily disable to speedup debug
+    choco install doxygen.install --installargs 'ADD_CMAKE_TO_PATH=System'
     choco install graphviz --installargs 'ADD_CMAKE_TO_PATH=System'
     ;;
 

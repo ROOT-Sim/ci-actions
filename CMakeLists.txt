@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2008-2021 HPDCS Group <rootsim@googlegroups.com>
 # SPDX-License-Identifier: GPL-3.0-only
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.22.2)
 project(ci-actions-test LANGUAGES C CXX)
 
 find_package(MPI REQUIRED)

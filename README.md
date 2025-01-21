@@ -40,7 +40,7 @@ build_and_test:
         type: [ Debug, Release ]
     steps:
       - name: Checkpout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Initialize Environment
         uses: ROOT-Sim/ci-actions/init@v1.5
       - name: Build & Test
@@ -99,17 +99,17 @@ The previous action creates and environment message in the variable `COMMENT`. Y
 a pull request using the following step, after its execution:
 
 ```yaml
-      - name: Comment PR
-        uses: actions/github-script@v3
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            github.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: ${{env.COMMENT}}
-            })
+    - name: Comment PR
+      uses: actions/github-script@v3
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        script: |
+          github.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: ${{env.COMMENT}}
+          })
 ```
 
 Also, an env `acceptable` variable with the value 0 or 1 is set, to determine whether the test has passed or not.
