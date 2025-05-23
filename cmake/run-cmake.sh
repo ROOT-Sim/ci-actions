@@ -45,5 +45,5 @@ esac
 
 cmake --build . --config "$INPUT_BUILD_TYPE" --target "$INPUT_TARGET"
 if [ "$INPUT_RUN_TESTS" = "true" ]; then
-  ctest --rerun-failed --output-on-failure
+  ctest -C "$INPUT_BUILD_TYPE" --rerun-failed --output-on-failure
 fi
