@@ -13,7 +13,6 @@ case $(uname) in
     ;;
 
   Windows* | MINGW* | MSYS*)
-    pwsh "$(dirname "${BASH_SOURCE[0]}")\\setup-llvm-vscode.ps1"
     ;;
 
   *)
