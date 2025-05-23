@@ -13,7 +13,6 @@ case $(uname) in
     ;;
 
   Windows* | MINGW* | MSYS*)
-    Choco install llvm
     ;;
 
   *)

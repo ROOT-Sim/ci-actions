@@ -3,7 +3,6 @@ name: build-test
 on:
   push:
   pull_request:
-  workflow_dispatch:
 
 jobs:
   test:
@@ -16,7 +15,7 @@ jobs:
         type: [ Debug ]
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: REUSE check
       uses: ./reuse-check
     - name: Initialize Environment
@@ -40,5 +39,3 @@ jobs:
       uses: ./docs-coverage
       with:
         accept-threshold: "1.5"
-    - name: Website Deployment
-      uses: ./website-deploy
