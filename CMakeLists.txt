@@ -3,6 +3,10 @@
 cmake_minimum_required(VERSION 3.22.2)
 project(ci-actions-test LANGUAGES C CXX)
 
+if(MSVC AND NOT CMAKE_C_COMPILER_ID STREQUAL "Clang")
+    message(FATAL_ERROR "You are using the MSVC compiler, which does not properly implement C11. Please consider switching to clang.")
+endif()
+
 find_package(MPI REQUIRED)
 add_compile_options(${TARGET_NAME} ${MPI_CXX_COMPILE_FLAGS})
 include_directories(SYSTEM ${MPI_CXX_INCLUDE_PATH})
