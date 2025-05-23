@@ -1,5 +1,5 @@
 #!/bin/bash
-# SPDX-FileCopyrightText: 2008-2021 HPDCS Group <rootsim@googlegroups.com>
+# SPDX-FileCopyrightText: 2008-2025 HPDCS Group <rootsim@googlegroups.com>
 # SPDX-License-Identifier: GPL-3.0-only
 set -eu
 
@@ -34,7 +34,7 @@ Linux | Darwin)
 
 Windows* | MINGW* | MSYS*)
   "${I_MPI_ROOT}"/env/vars.bat
-  cmake -G "Visual Studio 17 2022" -A x64 -T clang-cl -DCMAKE_C_COMPILER="$INPUT_CC" -DCMAKE_CXX_COMPILER="$INPUT_CXX" -DCMAKE_BUILD_TYPE="$INPUT_BUILD_TYPE" -DCMAKE_C_FLAGS="$INPUT_CFLAGS" -DCMAKE_CXX_FLAGS="$INPUT_CXXFLAGS" "$INPUT_SOURCE_DIR"
+  cmake -G "Visual Studio 17 2022" -A x64 -T ClangCL -DCMAKE_C_COMPILER="$INPUT_CC" -DCMAKE_CXX_COMPILER="$INPUT_CXX" -DCMAKE_BUILD_TYPE="$INPUT_BUILD_TYPE" -DCMAKE_C_FLAGS="$INPUT_CFLAGS" -DCMAKE_CXX_FLAGS="$INPUT_CXXFLAGS" "$INPUT_SOURCE_DIR"
   ;;
 *)
 
