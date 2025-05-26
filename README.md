@@ -20,6 +20,9 @@ This project is released under the [GPLv3](LICENSES/GPL-3.0-only.txt).
 
 This is a short walk-through, used mostly for internal reference.
 
+
+### Build & Test
+
 To run CI of C/C++ projects, testing on all operating systems with a combination of the compilers and
 libraries considered for the project, do the following:
 
@@ -42,9 +45,9 @@ build_and_test:
       - name: Checkpout repository
         uses: actions/checkout@v4
       - name: Initialize Environment
-        uses: ROOT-Sim/ci-actions/init@v1.5
+        uses: ROOT-Sim/ci-actions/init@v1.6
       - name: Build & Test
-        uses: ROOT-Sim/ci-actions/cmake@v1.5
+        uses: ROOT-Sim/ci-actions/cmake@v1.6
         with:
           build-dir: ${{ runner.workspace }}/build
           cc: ${{ matrix.compiler }}
@@ -60,18 +63,21 @@ follows:
 
 ```yaml
     - name: Initialize Environment
-      uses: ROOT-Sim/ci-actions/init@v1.5
+      uses: ROOT-Sim/ci-actions/init@v1.6
       with:
         with-mpi: no
         with-doxygen: no
 ```
+
+
+### Documentation
 
 In order to generate the documentation of the project, the following step can be included to generate the Doxygen
 documentation:
 
 ```yaml
     - name: Generate Documentation
-      uses: ROOT-Sim/ci-actions/docs@v1.5
+      uses: ROOT-Sim/ci-actions/docs@v1.6
 ```
 
 Note that in the above case, it is automatically triggering the build of a `doc` target from `CMakeLists.txt`.
@@ -79,7 +85,7 @@ If the target to generate Doxygen documentation is different, it can be specifie
 
 ```yaml
     - name: Generate Documentation
-      uses: ROOT-Sim/ci-actions/docs@v1.5
+      uses: ROOT-Sim/ci-actions/docs@v1.6
       with:
         docs-target: generate-documentation
 ```
@@ -89,7 +95,7 @@ action. If running in a pull request, it will comment the pull request with info
 
 ```yaml
     - name: Documentation Coverage
-      uses: ROOT-Sim/ci-actions/docs-coverage@v1.5
+      uses: ROOT-Sim/ci-actions/docs-coverage@v1.6
       with:
         accept-threshold: "60.0"
         build-path: build/docs
@@ -114,9 +120,40 @@ a pull request using the following step, after its execution:
 
 Also, an env `acceptable` variable with the value 0 or 1 is set, to determine whether the test has passed or not.
 
+
+### REUSE compliance
+
 If you want to perform a REUSE check (which fails the CI if the check does not pass), you can use the following:
 
 ```yaml
     - name: REUSE check
-      uses: ROOT-Sim/ci-actions/reuse-check@v1.5
+      uses: ROOT-Sim/ci-actions/reuse-check@v1.6
+```
+
+
+### Copyright Update
+
+We also have an action to update the copyright headers in the source files. This is useful to keep the
+copyright information up to date across the project.
+
+Currently, the action will look for the following pattern: `2008-[0-9]{4} HPCS Group` and update the second
+year to the current year. We do not offer the possibility to specify the pattern, yet.
+
+It can be used in a cron job, as follows (runs at 1 am on January 1st of every year):
+
+```yaml
+name: update-copyright
+
+on:
+  schedule:
+    - cron: "0 1 1 1 *"
+
+jobs:
+  update-copyright:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Update copyright
+      uses: ROOT-Sim/ci-actions/update-copyright@v1.6
+      with:
+        branch-to-update: develop
 ```

@@ -1,0 +1,14 @@
+name: update-copyright
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  update-copyright:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Update copyright
+      uses: ./update-copyright
