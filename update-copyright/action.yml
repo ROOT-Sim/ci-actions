@@ -20,4 +20,5 @@ runs:
           Happy New Year! °🥂⋆.ೃ🍾࿔*:･
         title: Update copyright year
         body: Happy New Year! °🥂⋆.ೃ🍾࿔*:･
-        branch: develop
+        branch: update-copyright
+        base: develop
