@@ -1,0 +1,23 @@
+---
+name: 'Update Copyright'
+description: 'Updates copyright notice and creates a pull request'
+
+runs:
+  using: 'composite'
+  steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.13'
+    - id: update-copyright
+      run: python ${GITHUB_ACTION_PATH}/update_copyright.py
+      shell: bash
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v7
+      with:
+        commit-message: Update copyright year |
+          
+          Happy New Year! °🥂⋆.ೃ🍾࿔*:･
+        title: Update copyright year
+        body: Happy New Year! °🥂⋆.ೃ🍾࿔*:･
+        branch: develop
