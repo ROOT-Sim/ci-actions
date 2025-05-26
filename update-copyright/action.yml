@@ -1,11 +1,18 @@
 ---
 name: 'Update Copyright'
-description: 'Updates copyright notice and creates a pull request'
+description: 'Updates copyright notice and creates a pull request. Meant to be run in a cron job at the beginning of the year.'
+inputs:
+  branch-to-update:
+    description: Specify the branch where the copyright notice should be updated
+    default: develop
+    required: false
 
 runs:
   using: 'composite'
   steps:
     - uses: actions/checkout@v4
+      with:
+        ref: ${{ inputs.branch-to-update }}
     - uses: actions/setup-python@v5
       with:
         python-version: '3.13'
@@ -20,4 +27,6 @@ runs:
           Happy New Year! °🥂⋆.ೃ🍾࿔*:･
         title: Update copyright year
         body: Happy New Year! °🥂⋆.ೃ🍾࿔*:･
-        branch: develop
+        branch: update-copyright-action
+        base: ${{ inputs.branch-to-update }}
+        branch-suffix: short-commit-hash
