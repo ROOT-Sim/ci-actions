@@ -1,6 +1,6 @@
 # ROOT-Sim Actions
 
-[![ci](https://github.com/ROOT-Sim/ci-actions/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/ROOT-Sim/ci-actions/actions/workflows/ci.yml)
+[![CI](https://github.com/ROOT-Sim/ci-actions/actions/workflows/build-test.yml/badge.svg)](https://github.com/ROOT-Sim/ci-actions/actions/workflows/build-test.yml)
 
 This is the set of actions that are used across the different ROOT-Sim repositories to support
 CI/CD of the components of the project.
@@ -40,11 +40,11 @@ build_and_test:
         type: [ Debug, Release ]
     steps:
       - name: Checkpout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Initialize Environment
-        uses: ROOT-Sim/ci-actions/init@v1.4
+        uses: ROOT-Sim/ci-actions/init@v1.5
       - name: Build & Test
-        uses: ROOT-Sim/ci-actions/cmake@v1.4
+        uses: ROOT-Sim/ci-actions/cmake@v1.5
         with:
           build-dir: ${{ runner.workspace }}/build
           cc: ${{ matrix.compiler }}
@@ -60,7 +60,7 @@ follows:
 
 ```yaml
     - name: Initialize Environment
-      uses: ROOT-Sim/ci-actions/init@v1.4
+      uses: ROOT-Sim/ci-actions/init@v1.5
       with:
         with-mpi: no
         with-doxygen: no
@@ -71,7 +71,7 @@ documentation:
 
 ```yaml
     - name: Generate Documentation
-      uses: ROOT-Sim/ci-actions/docs@v1.4
+      uses: ROOT-Sim/ci-actions/docs@v1.5
 ```
 
 Note that in the above case, it is automatically triggering the build of a `doc` target from `CMakeLists.txt`.
@@ -79,7 +79,7 @@ If the target to generate Doxygen documentation is different, it can be specifie
 
 ```yaml
     - name: Generate Documentation
-      uses: ROOT-Sim/ci-actions/docs@v1.4
+      uses: ROOT-Sim/ci-actions/docs@v1.5
       with:
         docs-target: generate-documentation
 ```
@@ -89,7 +89,7 @@ action. If running in a pull request, it will comment the pull request with info
 
 ```yaml
     - name: Documentation Coverage
-      uses: ROOT-Sim/ci-actions/docs-coverage@v1.4
+      uses: ROOT-Sim/ci-actions/docs-coverage@v1.5
       with:
         accept-threshold: "60.0"
         build-path: build/docs
@@ -99,17 +99,17 @@ The previous action creates and environment message in the variable `COMMENT`. Y
 a pull request using the following step, after its execution:
 
 ```yaml
-      - name: Comment PR
-        uses: actions/github-script@v3
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            github.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: ${{env.COMMENT}}
-            })
+    - name: Comment PR
+      uses: actions/github-script@v3
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        script: |
+          github.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: ${{env.COMMENT}}
+          })
 ```
 
 Also, an env `acceptable` variable with the value 0 or 1 is set, to determine whether the test has passed or not.
@@ -118,18 +118,5 @@ If you want to perform a REUSE check (which fails the CI if the check does not p
 
 ```yaml
     - name: REUSE check
-      uses: ROOT-Sim/ci-actions/reuse-check@v1.4
+      uses: ROOT-Sim/ci-actions/reuse-check@v1.5
 ```
-
-Another available action allows to deploy the documentation into a GitHub Pages website in the current repository.
-This action can be used as such:
-
-```yaml
-    - name: Website Deployment
-      uses: ROOT-Sim/ci-actions/website-deploy@v1.4
-```
-
-The documentation will be deployed in the `/docs/[branchname]/` path, where `[branchname]` is either `master` or 
-`develop`. The documentation is not actually deployed for any other branch.
-Additionally, it will copy the `README.md` file in the root directory of the website: if it is used in the site, the
-content of the page will therefore be automatically updated.
