@@ -152,6 +152,7 @@ jobs:
   update-copyright:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v4
     - name: Update copyright
       uses: ROOT-Sim/ci-actions/update-copyright@v1.6
       with:
