@@ -7,7 +7,7 @@ CI/CD of the components of the project.
 
 Currently, the actions supported are:
 * Ensure that proper compilers are available (clang, gcc) on the three major platforms (Ubuntu, macOS, Windows)
-* Install MPI (openmp on Ubuntu, mpich on macOS, Microsoft MPI on Windows)
+* Install MPI (openmp on Ubuntu, mpich on macOS, Intel MPI on Windows)
 * Compile and test a CMake project
 * Generate the documentation of the project
 * Compute the documentation coverage
