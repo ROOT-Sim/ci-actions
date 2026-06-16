@@ -45,9 +45,9 @@ build_and_test:
       - name: Checkpout repository
         uses: actions/checkout@v4
       - name: Initialize Environment
-        uses: ROOT-Sim/ci-actions/init@v1.6
+        uses: ROOT-Sim/ci-actions/init@v1.7
       - name: Build & Test
-        uses: ROOT-Sim/ci-actions/cmake@v1.6
+        uses: ROOT-Sim/ci-actions/cmake@v1.7
         with:
           build-dir: ${{ runner.workspace }}/build
           cc: ${{ matrix.compiler }}
@@ -63,7 +63,7 @@ follows:
 
 ```yaml
     - name: Initialize Environment
-      uses: ROOT-Sim/ci-actions/init@v1.6
+      uses: ROOT-Sim/ci-actions/init@v1.7
       with:
         with-mpi: no
         with-doxygen: no
@@ -77,7 +77,7 @@ documentation:
 
 ```yaml
     - name: Generate Documentation
-      uses: ROOT-Sim/ci-actions/docs@v1.6
+      uses: ROOT-Sim/ci-actions/docs@v1.7
 ```
 
 Note that in the above case, it is automatically triggering the build of a `doc` target from `CMakeLists.txt`.
@@ -85,7 +85,7 @@ If the target to generate Doxygen documentation is different, it can be specifie
 
 ```yaml
     - name: Generate Documentation
-      uses: ROOT-Sim/ci-actions/docs@v1.6
+      uses: ROOT-Sim/ci-actions/docs@v1.7
       with:
         docs-target: generate-documentation
 ```
@@ -95,7 +95,7 @@ action. If running in a pull request, it will comment the pull request with info
 
 ```yaml
     - name: Documentation Coverage
-      uses: ROOT-Sim/ci-actions/docs-coverage@v1.6
+      uses: ROOT-Sim/ci-actions/docs-coverage@v1.7
       with:
         accept-threshold: "60.0"
         build-path: build/docs
@@ -127,7 +127,7 @@ If you want to perform a REUSE check (which fails the CI if the check does not p
 
 ```yaml
     - name: REUSE check
-      uses: ROOT-Sim/ci-actions/reuse-check@v1.6
+      uses: ROOT-Sim/ci-actions/reuse-check@v1.7
 ```
 
 
@@ -154,7 +154,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Update copyright
-      uses: ROOT-Sim/ci-actions/update-copyright@v1.6
+      uses: ROOT-Sim/ci-actions/update-copyright@v1.7
       with:
         branch-to-update: develop
 ```
