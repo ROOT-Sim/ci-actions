@@ -36,6 +36,9 @@ inputs:
     description: Run CTest or not
     default: 'false'
     required: false
+  cmake-args:
+    description: 'Extra CMake configuration arguments'
+    required: false
 
 runs:
   using: 'composite'
@@ -56,3 +59,4 @@ runs:
         INPUT_CXXFLAGS: ${{ inputs.cxxflags }}
         INPUT_TARGET: ${{ inputs.target }}
         INPUT_RUN_TESTS: ${{ inputs.run-test }}
+        INPUT_CMAKE_ARGS: ${{ inputs.cmake-args }}
