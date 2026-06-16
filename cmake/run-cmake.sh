@@ -33,7 +33,9 @@ Linux | Darwin)
   ;;
 
 Windows* | MINGW* | MSYS*)
-  "${I_MPI_ROOT}"/env/vars.bat
+  if [ -n "${I_MPI_ROOT:-}" ]; then
+    "${I_MPI_ROOT}"/env/vars.bat
+  fi
   eval "args=($INPUT_CMAKE_ARGS)"
   cmake -T ClangCL -DCMAKE_C_COMPILER="$INPUT_CC" -DCMAKE_CXX_COMPILER="$INPUT_CXX" -DCMAKE_BUILD_TYPE="$INPUT_BUILD_TYPE" -DCMAKE_C_FLAGS="$INPUT_CFLAGS" -DCMAKE_CXX_FLAGS="$INPUT_CXXFLAGS" ${args[@]:+"${args[@]}"} "$INPUT_SOURCE_DIR"
   ;;
